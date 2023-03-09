@@ -1,6 +1,6 @@
 admissionWhitelistPatterns:
-- namePattern: us-central1-docker.pkg.dev/vsz-demo/**
+- namePattern: us-central1-docker.pkg.dev/cicd-three/**
 defaultAdmissionRule:
   enforcementMode: ENFORCED_BLOCK_AND_AUDIT_LOG
   evaluationMode: ALWAYS_DENY
-name: projects/vsz-demo/policy
+name: projects/cicd-three/policy
