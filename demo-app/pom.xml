@@ -25,7 +25,7 @@
     <testcontainers.version>1.17.2</testcontainers.version>
     <selenium.version>3.141.59</selenium.version>    
     <jib-maven-plugin.version>3.3.1</jib-maven-plugin.version>
-    <spring-cloud-gcp.version>4.1.1</spring-cloud-gcp.version>
+    <spring-cloud-gcp.version>4.0.0</spring-cloud-gcp.version>
   </properties>
 
   <dependencies>
