@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.4</version>
+    <version>2.7.9</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.example</groupId>
@@ -236,29 +236,6 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>              
-	<dependency>
-	    <groupId>org.hibernate</groupId>
-	    <artifactId>hibernate-entitymanager</artifactId>
-	    <version>6.0.0.Alpha7</version>
-	    <type>pom</type>
-	</dependency>
-        <!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>javax.persistence-api</artifactId>
-            <version>2.2</version>
-        </dependency>
-	<dependency>
-	    <groupId>javax.persistence</groupId>
-    	    <artifactId>persistence-api</artifactId>
-	    <version>1.0.2</version>
-	</dependency>
-	<dependency>
-	    <groupId>org.hibernate.javax.persistence</groupId>
-	    <artifactId>hibernate-jpa-2.1-api</artifactId>
-	    <version>1.0.2</version>
-	</dependency>
-
       </dependencies>
   </dependencyManagement>
   
