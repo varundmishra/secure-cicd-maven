@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.0</version>
+    <version>2.7.2</version>
   </parent>
   <groupId>com.example</groupId>
   <artifactId>demo-app</artifactId>
@@ -31,22 +31,22 @@
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
-      <version>5.7.8</version>
+      <version>5.7.5</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
-      <version>6.0.0</version>
+      <version>5.3.25</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>6.0.0</version>
+      <version>5.3.25</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-core</artifactId>
-      <version>5.3.27</version>
+      <version>5.3.25</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -89,9 +89,8 @@
     </dependency>
 
     <dependency>
-	    <groupId>org.springframework.boot</groupId>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
-      <version>2.7.11</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -101,17 +100,6 @@
       <groupId>com.google.cloud</groupId>
       <artifactId>spring-cloud-gcp-starter</artifactId>
     </dependency>    
-            <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>javax.persistence-api</artifactId>
-            <version>2.2</version>
-        </dependency>
-	<dependency>
-    	<groupId>javax.servlet</groupId>
-    	<artifactId>javax.servlet-api</artifactId>
-    	<version>4.0.1</version>
-    	<scope>provided</scope>
-	</dependency>
     <!--  Database sependencies-->
     <dependency>
       <groupId>com.h2database</groupId>
@@ -129,7 +117,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
-      <version>2.7.11</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>

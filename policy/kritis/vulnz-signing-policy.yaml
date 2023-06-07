@@ -11,3 +11,7 @@ spec:
     - projects/goog-vulnz/notes/CVE-2019-25013
     - projects/goog-vulnz/notes/CVE-2022-1471
     - projects/goog-vulnz/notes/CVE-2016-1000027
+    - projects/goog-vulnz/notes/CVE-2023-20873
+    - projects/goog-vulnz/notes/CVE-2023-20862
+    - projects/goog-vulnz/notes/CVE-2023-20863
+    - projects/goog-vulnz/notes/CVE-2022-45868
