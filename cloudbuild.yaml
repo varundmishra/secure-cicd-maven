@@ -11,7 +11,7 @@ steps:
     args:
     - -c
     - |
-      export fname="git diff --name-only HEAD HEAD~1"
+      export fname=`git diff --name-only HEAD HEAD~1`
       echo "fname is $fname"
 options:
   pool:
