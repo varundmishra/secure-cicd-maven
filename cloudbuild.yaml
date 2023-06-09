@@ -14,12 +14,10 @@ steps:
       git fetch --unshallow
       lc=`git rev-parse HEAD`
       echo "lc is $lc"
-      slci="git rev-parse HEAD'^'"
-      slc=`echo $slci | bash`
+      slc="git rev-parse HEAD'^'"
       echo "slc is $slc"
-
-      #      export fname=$(git diff --name-only HEAD\^)
-      #echo "fname is $fname"
+      fname=`git show --format="" --name-only`
+      echo "fname is $fname"
 options:
   pool:
     name: 'projects/$PROJECT_ID/locations/us-central1/workerPools/private-pool'
