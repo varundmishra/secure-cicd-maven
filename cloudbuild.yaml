@@ -13,7 +13,7 @@ steps:
     - |
       lc=`git log -n 1 --pretty=format:"%H"`
       slc=`git log -n 1 --skip 1 --pretty=format:"%H"`
-      export fname=`git diff --name-status [$lc [$slc]]`
+      export fname=$(git diff --name-only HEAD\^)
       echo "fname is $fname"
 options:
   pool:
