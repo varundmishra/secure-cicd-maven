@@ -11,6 +11,7 @@ steps:
     args:
     - -c
     - |
+      git fetch --all
       lc=`git rev-parse HEAD`
       echo "lc is $lc"
       slci="git rev-parse HEAD'^'"
