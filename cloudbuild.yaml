@@ -11,11 +11,14 @@ steps:
     args:
     - -c
     - |
-      lc=`git log -n 1 --pretty=format:"%H"`
-      slc=`git log -n 1 --skip 1 --pretty=format:"%H"`
-      ls -lrth
-      export fname=$(git diff --name-only HEAD\^)
-      echo "fname is $fname"
+      lc=`git rev-parse HEAD`
+      echo "lc is $lc"
+      slc=`git rev-parse HEAD~`
+      eval slc=$slc
+      echo "slc is $slc"
+
+      #      export fname=$(git diff --name-only HEAD\^)
+      #echo "fname is $fname"
 options:
   pool:
     name: 'projects/$PROJECT_ID/locations/us-central1/workerPools/private-pool'
