@@ -14,7 +14,7 @@ steps:
       git fetch --unshallow
       lc=`git rev-parse HEAD`
       echo "lc is $lc"
-      slc="git rev-parse HEAD'^'"
+      slc=`git rev-parse HEAD'^'`
       echo "slc is $slc"
       fname=`git show --format="" --name-only`
       echo "fname is $fname"
