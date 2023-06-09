@@ -13,7 +13,7 @@ steps:
     - |
       lc=`git rev-parse HEAD`
       echo "lc is $lc"
-      slc=$"(git rev-parse HEAD^)"
+      slc=$(git rev-parse HEAD^)
       echo "slc is $slc"
 
       #      export fname=$(git diff --name-only HEAD\^)
