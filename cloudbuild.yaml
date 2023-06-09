@@ -11,8 +11,9 @@ steps:
     args:
     - -c
     - |
-      bash --version
-      export fname=`git show --format="" --name-only`
+      lc=`git log -n 1 --pretty=format:"%H"`
+      slc=`git log -n 1 --skip 1 --pretty=format:"%H"`
+      export fname=`git diff --name-status [$lc [$slc]]`
       echo "fname is $fname"
 options:
   pool:
