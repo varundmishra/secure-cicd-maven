@@ -6,18 +6,61 @@ substitutions:
   _APP_NAME: demo-app
   _PIPELINE_NAME: security-demo-pipeline
 steps:
-  - name: gcr.io/cloud-builders/git
+  # integration tests app with Maven
+  - name: maven:3.9.2-eclipse-temurin-17
+    entrypoint: mvn
+    args: ["verify"]
+    dir: ${_APP_NAME}
+  # build app with Maven
+  - name: maven:3.9.2-eclipse-temurin-17
+    entrypoint: mvn
+    args: ["package", "-Dmaven.test.skip=true"]
+    dir: ${_APP_NAME}
+  # Build and tag using commit sha
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_APP_NAME}:${COMMIT_SHA}', '-f', 'Dockerfile']
+    dir: ${_APP_NAME}
+  # Push the container image to Artifact Registry, get sha256 of the image
+  - name: gcr.io/cloud-builders/docker
     entrypoint: /bin/bash
     args:
     - -c
     - |
-      git fetch --unshallow
-      lc=`git rev-parse HEAD`
-      echo "lc is $lc"
-      slc=`git rev-parse HEAD'^'`
-      echo "slc is $slc"
-      fname=`git show --format="" --name-only`
-      echo "fname is $fname"
+      docker push us-central1-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_APP_NAME}:${COMMIT_SHA} &&
+      docker image inspect us-central1-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_APP_NAME}:${COMMIT_SHA} --format '{{index .RepoDigests 0}}' > image-digest.txt &&
+      cat image-digest.txt
+    id: push
+    # Test against my vulnerability policy
+  - name: gcr.io/$PROJECT_ID/kritis-signer
+    entrypoint: /bin/bash
+    args:
+    - -c
+    - |
+      /kritis/signer \
+      -v=10 \
+      -alsologtostderr \
+      -image=$(/bin/cat image-digest.txt) \
+      -policy=./policy/kritis/vulnz-signing-policy.yaml \
+      -kms_key_name=${_KMS_KEY_NAME} \
+      -kms_digest_alg=${_KMS_DIGEST_ALG} \
+      -note_name=${_NOTE_NAME}
+    waitFor: ['push']
+    id: vulnsign
+  # Create release in Google Cloud Deploy
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: /bin/bash
+    args:
+    - -c
+    - |
+      gcloud deploy releases create rel-${SHORT_SHA} \
+      --delivery-pipeline=${_PIPELINE_NAME} \
+      --region=us-central1 \
+      --annotations=commitId=${REVISION_ID} \
+      --images=${_APP_NAME}=$(/bin/cat image-digest.txt)
+    waitFor: ['vulnsign']
+images:
+- us-central1-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/${_APP_NAME}:${COMMIT_SHA}
 options:
+  requestedVerifyOption: VERIFIED
   pool:
     name: 'projects/$PROJECT_ID/locations/us-central1/workerPools/private-pool'
