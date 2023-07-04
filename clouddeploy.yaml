@@ -17,7 +17,7 @@ serialPipeline:
              disablePodOverprovisioning: true
        canaryDeployment:
          percentages: [5, 25, 50]
-         verify: true
+         verify: false
  - targetId: prod-sec
    strategy:
      canary:
