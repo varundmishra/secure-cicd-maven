@@ -1,4 +1,4 @@
-apiVersion: skaffold/v3alpha1
+apiVersion: skaffold/v2beta26
 kind: Config
 metadata:
   name: modern-java-google-cloud
