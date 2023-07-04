@@ -7,6 +7,8 @@ description: Security-focused CI/CD pipeline on GCP
 serialPipeline:
  stages:
  - targetId: test-sec
+   profiles:
+   - test
    strategy:
      canary:
        runtimeConfig:
@@ -19,6 +21,8 @@ serialPipeline:
          percentages: [5, 25, 50]
          verify: false
  - targetId: prod-sec
+   profiles:
+   - prod
    strategy:
      canary:
        runtimeConfig:
