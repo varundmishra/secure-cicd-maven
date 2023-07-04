@@ -7,8 +7,7 @@ description: Security-focused CI/CD pipeline on GCP
 serialPipeline:
  stages:
  - targetId: test-sec
-   profiles:
-   - test
+   profiles: [test]
    strategy:
      canary:
        runtimeConfig:
