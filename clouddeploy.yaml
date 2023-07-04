@@ -16,6 +16,7 @@ serialPipeline:
            serviceNetworking:
              service: "demo-app"
              deployment: "demo-app"
+             disablePodOverprovisioning: false
        canaryDeployment:
          percentages: [25, 50]
          verify: false

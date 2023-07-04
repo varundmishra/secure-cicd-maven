@@ -4,4 +4,4 @@ CREATE TABLE quotes(
    author VARCHAR(256)
 );
 
-INSERT INTO quotes (id,quote,author) VALUES (1,'This is v8 of Demo App','Running on GKE');
+INSERT INTO quotes (id,quote,author) VALUES (1,'This is v9 of Demo App','Running on GKE');
