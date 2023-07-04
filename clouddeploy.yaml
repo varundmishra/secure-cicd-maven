@@ -14,10 +14,22 @@ serialPipeline:
            serviceNetworking:
              service: "demo-app"
              deployment: "demo-app"
+             disablePodOverprovisioning: true
        canaryDeployment:
          percentages: [5, 25, 50]
          verify: true
  - targetId: prod-sec
+   strategy:
+     canary:
+       runtimeConfig:
+         kubernetes:
+           serviceNetworking:
+             service: "demo-app"
+             deployment: "demo-app"
+             disablePodOverprovisioning: true
+       canaryDeployment:
+         percentages: [5, 25, 50]
+         verify: true
 ---
 
 apiVersion: deploy.cloud.google.com/v1

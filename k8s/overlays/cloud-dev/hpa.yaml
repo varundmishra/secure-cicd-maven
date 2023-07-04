@@ -4,7 +4,7 @@ metadata:
   name: demo-app
 spec:
   minReplicas: 1
-  maxReplicas: 2
+  maxReplicas: 4
   metrics:
   - type: Resource
     resource:
