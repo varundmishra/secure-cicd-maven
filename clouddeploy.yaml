@@ -1,0 +1,39 @@
+# replace "cicd-three" in the three targets below with your actual project(s)
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: security-demo-pipeline
+description: Security-focused CI/CD pipeline on GCP
+serialPipeline:
+ stages:
+ - targetId: test-sec
+ - targetId: prod-sec
+   strategy:
+     canary:
+       runtimeConfig:
+         kubernetes:
+           serviceNetworking:
+             service: "demo-app"
+             deployment: "demo-app"
+       canaryDeployment:
+         percentages: [5, 25, 50]
+         verify: true
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: test-sec
+description: test cluster
+gke:
+  cluster: projects/cicd-three/locations/us-central1-a/clusters/test-sec
+---
+
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: prod-sec
+description: prod cluster
+requireApproval: true
+gke:
+  cluster: projects/cicd-three/locations/us-central1-a/clusters/prod-sec
