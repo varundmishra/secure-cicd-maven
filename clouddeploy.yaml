@@ -7,7 +7,8 @@ description: Security-focused CI/CD pipeline on GCP
 serialPipeline:
  stages:
  - targetId: test-sec
-   profiles: [test]
+   profiles: 
+   - test
    strategy:
      canary:
        runtimeConfig:
@@ -15,9 +16,8 @@ serialPipeline:
            serviceNetworking:
              service: "demo-app"
              deployment: "demo-app"
-             disablePodOverprovisioning: true
        canaryDeployment:
-         percentages: [5, 25, 50]
+         percentages: [25, 50]
          verify: false
  - targetId: prod-sec
    profiles:
